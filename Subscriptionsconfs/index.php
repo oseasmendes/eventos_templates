@@ -1,0 +1,62 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Subscriptionsconf[]|\Cake\Collection\CollectionInterface $subscriptionsconfs
+ */
+?>
+<div class="subscriptionsconfs index content">
+    <?= $this->Html->link(__('New Subscriptionsconf'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <h3><?= __('Subscriptionsconfs') ?></h3>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th><?= $this->Paginator->sort('id') ?></th>
+                    <th><?= $this->Paginator->sort('subscription_id') ?></th>
+                    <th><?= $this->Paginator->sort('number') ?></th>
+                    <th><?= $this->Paginator->sort('date') ?></th>
+                    <th><?= $this->Paginator->sort('confirmationby') ?></th>
+                    <th><?= $this->Paginator->sort('user_id') ?></th>
+                    <th><?= $this->Paginator->sort('people_id') ?></th>
+                    <th><?= $this->Paginator->sort('statusflag') ?></th>
+                    <th><?= $this->Paginator->sort('activeflag') ?></th>
+                    <th><?= $this->Paginator->sort('created') ?></th>
+                    <th><?= $this->Paginator->sort('modified') ?></th>
+                    <th class="actions"><?= __('Actions') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($subscriptionsconfs as $subscriptionsconf): ?>
+                <tr>
+                    <td><?= $this->Number->format($subscriptionsconf->id) ?></td>
+                    <td><?= $subscriptionsconf->has('subscription') ? $this->Html->link($subscriptionsconf->subscription->id, ['controller' => 'Subscriptions', 'action' => 'view', $subscriptionsconf->subscription->id]) : '' ?></td>
+                    <td><?= $this->Number->format($subscriptionsconf->number) ?></td>
+                    <td><?= h($subscriptionsconf->date) ?></td>
+                    <td><?= h($subscriptionsconf->confirmationby) ?></td>
+                    <td><?= $subscriptionsconf->has('user') ? $this->Html->link($subscriptionsconf->user->name, ['controller' => 'Users', 'action' => 'view', $subscriptionsconf->user->id]) : '' ?></td>
+                    <td><?= $this->Number->format($subscriptionsconf->people_id) ?></td>
+                    <td><?= h($subscriptionsconf->statusflag) ?></td>
+                    <td><?= h($subscriptionsconf->activeflag) ?></td>
+                    <td><?= h($subscriptionsconf->created) ?></td>
+                    <td><?= h($subscriptionsconf->modified) ?></td>
+                    <td class="actions">
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $subscriptionsconf->id]) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $subscriptionsconf->id]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $subscriptionsconf->id], ['confirm' => __('Are you sure you want to delete # {0}?', $subscriptionsconf->id)]) ?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->first('<< ' . __('first')) ?>
+            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->numbers() ?>
+            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->last(__('last') . ' >>') ?>
+        </ul>
+        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+    </div>
+</div>
