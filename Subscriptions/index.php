@@ -5,7 +5,7 @@
  */
 ?>
 <div class="subscriptions index content">
-    <?= $this->Html->link(__('New Subscription'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('Lançar Pré-Inscrição'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Inscrições Online') ?></h3>
     <div class="table-responsive">
         <table>

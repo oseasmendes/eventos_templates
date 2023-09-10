@@ -10,16 +10,21 @@ $roleid = $this->Identity->get('role_id');
         <div class="side-nav">
         <?php if ($roleid == 1 ) : ?>
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Subscriptionsdoc'), ['action' => 'edit', $subscriptionsdoc->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Subscriptionsdoc'), ['action' => 'delete', $subscriptionsdoc->id], ['confirm' => __('Are you sure you want to delete # {0}?', $subscriptionsdoc->id), 'class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('Edit Subscriptionsdoc'), ['action' => 'edit', $subscriptionsdoc->id], ['class' => 'side-nav-item']) ?>           
             <?= $this->Html->link(__('List Subscriptionsdocs'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
             <?= $this->Html->link(__('New Subscriptionsdoc'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
-        <?php endif; ?> 
+            
+        <?php endif; ?>  
+        <?php if ($subscriptionsdoc->statusflag == "ENVIADO" ) : ?>
+                <?= $this->Form->postLink(__('Excluir Comprovante'), ['action' => 'delete', $subscriptionsdoc->id], ['confirm' => __('Are you sure you want to delete # {0}?', $subscriptionsdoc->id)], ['class' => 'side-nav-item']) ?>                
+            <?php endif; ?>                 
         </div>
     </aside>
     <div class="column-responsive column-80">
         <div class="subscriptionsdocs view content">
-            <h3><?= "COMPROVANTE NrO. #".h($subscriptionsdoc->id) ?></h3>
+            <h3><?= "COMPROVANTE NrO. #".h($subscriptionsdoc->id) ?></h3>            
+            
+        
             <table>
                 <tr>
                     <th><?= __('Inscrição Nro. #') ?></th>
@@ -33,6 +38,14 @@ $roleid = $this->Identity->get('role_id');
                     <th><?= __('TipoDoc') ?></th>
                     <td><?= $this->Number->format($subscriptionsdoc->doctype_id) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Histórico:') ?></th>
+                    <td><?= h($subscriptionsdoc->historic) ?></td>
+                </tr>   
+                <tr>
+                    <th><?= __('Status:') ?></th>
+                    <td><?= h($subscriptionsdoc->statusflag) ?></td>
+                </tr>        
                 <tr>
                     <th><?= __('Lancto.:') ?></th>
                     <td><?= h($subscriptionsdoc->created) ?></td>

@@ -47,13 +47,13 @@ $cakeDescription = 'SaesChurch-Services Portal';
             <!-- <a target="_blank" rel="noopener" href="/">Home</a> -->
             <?= $this->Html->link("Home",['controller'=>'News','action'=>'home']) ?>
             <?= $this->Html->link("Agenda",['controller'=>'Agendas','action'=>'index']) ?>
-            <?php $username = $this->Identity->get('username'); ?>
-            <?php $name = $this->Identity->get('name'); ?>            
-            <?php $userid = $this->Identity->get('id'); ?>
-
-            <?php if(!empty($username)): ?>
-            <a target="_blank" rel="noopener" href="#"><?= $name; ?></a>
-            <?= $this->Html->link("Logout",['controller'=>'Users','action'=>'logout']) ?>
+            <?php if ($this->Identity->isLoggedIn()) : ?>
+                <?php $username = $this->Identity->get('username'); ?>
+                <?php $name = $this->Identity->get('name'); ?>            
+                <?php $userid = $this->Identity->get('id'); ?>
+            
+                <a target="_blank" rel="noopener" href="#"><?= $name; ?></a>
+                <?= $this->Html->link("Logout",['controller'=>'Users','action'=>'logout']) ?>
             <?php endif; ?>            
             <!-- <a target="_blank" rel="noopener" href="https://book.cakephp.org/4/">Documentation</a> -->
             <!-- <a target="_blank" rel="noopener" href="https://api.cakephp.org/">API</a> -->

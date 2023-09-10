@@ -27,20 +27,39 @@
      ?>
 
 
-    <div class="jumbotron jumbotron-fluid">
+<nav class="top-nav">
       <div class="container">
         <div class="text-center">
             <?php echo $pathimage; ?>
         </div>
         <h1 class="display-5">Assembléia de Deus Ministério do Belém - SJC</h1>
         <p class="lead">Rua Dolzani Ricardo, 334 - 12210-110 - São José dos Campos - SP</p>
-        <p>
+       
       </div>
-    </div>
-  
-    <?= $this->fetch('content'); ?>
+</nav>
+      <main class="main">
+        <div class="container">
+          <?= $this->fetch('content'); ?>         
+          <?= $this->element('footerlight'); ?>
+          </div>
+     </main>
+     <footer>
     
-    <?= $this->element('footer'); ?>
-  
+    </footer>
+        
+    <?=
+    $this->Html->script([
+        "/plugins/jquery/jquery.min.js", 
+        "/plugins/jquery-ui/jquery-ui.min.js",
+        "/plugins/bootstrap/js/bootstrap.bundle.min.js",
+        "/js/moment.js",
+        "/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js",
+        "/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
+        "/dist/js/adminlte.js",
+        "/dist/js/pages/dashboard.js"
+        
+    ])
+?>
+
   </body>
 </html>

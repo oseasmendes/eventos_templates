@@ -51,6 +51,7 @@ $name = $this->Identity->get('name');
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
             <a href="<?= $this->Url->build('/dashboards', ["fullBase" => true]) ?>" class="nav-link">
+            
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard                
@@ -438,18 +439,18 @@ $name = $this->Identity->get('name');
               
             
               <li class="nav-item">
-                <a href="<?= $this->Url->build('/subscriptions', ["fullBase" => true]) ?>" class="nav-link">
+                <a href="<?= $this->Url->build('/preinscricao', ["fullBase" => true]) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pré-Inscrições</p>
                 </a>
               </li>
-             <!-- <li class="nav-item">
-                <a href="<?= $this->Url->build('/projetosblockpoints', ["fullBase" => true]) ?>" class="nav-link">
+              <li class="nav-item">
+                <a href="<?= $this->Url->build('/subscriptions', ["fullBase" => true]) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Impedimentos de Projetos</p>
+                  <p>Inscrições</p>
                 </a>
               </li>
-              <li class="nav-item">
+             <!-- <li class="nav-item">
                 <a href="<?= $this->Url->build('/entregasblockpoints', ["fullBase" => true]) ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Impedimentos de Entregas</p>

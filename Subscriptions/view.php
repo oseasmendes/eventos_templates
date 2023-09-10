@@ -23,14 +23,14 @@ $roleid = $this->Identity->get('role_id');
         <div class="row">
                             <?php  
                               
-                                    
+                                if ($subscription->statusflag = 'ABERTA') {      
                                     echo '<div class="col-3"> ';
                                     echo $this->Form->create($subscription, ['url'=>['controller' => 'subscriptionsdocs', 'action' => 'addid',$subscription->id],'']);    
                                     echo   $this->Form->control('Imagem',['default'=> $this->Number->format($subscription->id,['places' => 0]),'type' => 'hidden']);                                  
                                     echo $this->Form->button('Anexar Comprovante',['class'=>'btn-dark btn-sm btn-block']);
                                     echo  $this->Form->end() ; 
                                     echo '</div>';
-                              
+                                }
                             ?>
                         </div>
             <h3><?= "Pré-Inscrição: #".h($subscription->id) ?></h3>

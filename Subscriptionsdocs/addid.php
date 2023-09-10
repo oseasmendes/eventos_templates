@@ -23,7 +23,7 @@
                      echo $this->Form->control('doctype_id', ['options' => $doctypes, 'empty' => true,'label' => 'Tipo de Comprovante']);
                      echo $this->Form->control('subscription_id', array('default'=>$paramid,'disabled' => 'disabled','value'=>$paramid,'label'=>'Nro. InscricaoWeb','class'=>['class'=> 'form-control']));
                      echo $this->Form->control('image',['type' => 'file','label'=>'Anexo']);
-                     echo $this->Form->control('description',['label'=>'Historico']);
+                     echo $this->Form->control('description',['label'=>'Descricao']);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Enviar')) ?>

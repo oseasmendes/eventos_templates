@@ -26,6 +26,7 @@
                     echo $this->Form->control('subscription_id', ['options' => $subscriptions, 'empty' => true]);
                     echo $this->Form->control('doctype_id');
                     echo $this->Form->control('description');
+                    echo $this->Form->control('historic');
                     echo $this->Form->control('filename');
                     echo $this->Form->control('path');
                     echo $this->Form->control('statusflag');

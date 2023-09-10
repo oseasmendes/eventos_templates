@@ -4,22 +4,19 @@
  * @var \App\Model\Entity\People $people
  */
 ?>
-<section class="content">
-        <div class="container-fluid">
-            <div class="row">     
-
-                <div class="col-md-12">
-                    <div class="card card-info">
-                        <div class="card-header">
-
-                       
-                        </div>
-                            <div class="card-body">
-                                    <div class="row" > 
-                                    </div>
 
 
 <div class="row">
+    <aside class="column">
+        <div class="side-nav">
+            <h4 class="heading"><?= __('Opções') ?></h4>
+            <?= $this->Html->link(__('Editar Dados Pessoais'), ['action' => 'edit', $people->id], ['class' => 'side-nav-item']) ?>                      
+            <?= $this->Html->link(__('Eventos Programados'), ['controller'=>'Rolevents','action' => 'index'], ['class' => 'side-nav-item']) ?>          
+            <?= $this->Html->link(__('Tela Principal'), ['controller'=>'News','action' => 'home'], ['class' => 'side-nav-item']) ?>          
+            
+            
+        </div>
+    </aside>
    
     <div class="column-responsive column-80">
         <div class="peoples view content">
@@ -91,11 +88,3 @@
 
 
 
-</div>                                                                   
-                            </div>
-                    </div>
-                </div>
-            </div>
-        </div> 
-        </div>      
-    </section>

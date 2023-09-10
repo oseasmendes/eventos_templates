@@ -1,11 +1,9 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Rolevent[]|\Cake\Collection\CollectionInterface $rolevents
+ * @var \App\Model\Entity\Singlesubscription[]|\Cake\Collection\CollectionInterface $singlesubscriptions
  */
-$roleid = $this->Identity->get('role_id');
 ?>
-
 <div class="container">
 <div class="pos-f-t">
           <div class="collapse" id="navbarToggleExternalContent">
@@ -16,10 +14,8 @@ $roleid = $this->Identity->get('role_id');
                         <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Opções
                         </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <?= $this->Html->link(__('Novo Evento'), ['action' => 'add'],['class'=>'dropdown-item'])?>
-                                <?= $this->Html->link(__('Listar Notícias'), ['controller' => 'Breakingnews', 'action' => 'index'],['class'=>'dropdown-item'])?>
-                                
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">                                
+                                <?= $this->Html->link(__('Listar Notícias'), ['controller' => 'Breakingnews', 'action' => 'index'],['class'=>'dropdown-item'])?>                                
                             <a class="dropdown-item" href="#">Another action</a>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
@@ -40,8 +36,8 @@ $roleid = $this->Identity->get('role_id');
                                                                                'style'=>'width:100%',
                                                                                'type'=>'search', 
                                                                                'label'=>['class'=>'col-xs-2 control-label'],
-                                                                               'placeholder'=>'Descricao',
-                                                                               'aria-label'=>'Evento',
+                                                                               'placeholder'=>'Nome',
+                                                                               'aria-label'=>'Nome',
                                                                                'label' => false,
                                                                                "autocomplete" => "off",
                                                                                'default'=>$this->request->getQuery('description')]); ?>               
@@ -66,37 +62,41 @@ $roleid = $this->Identity->get('role_id');
 </div> 
 
 
-<div class="container">
-    <?php if ($roleid == 1 ) : ?>
-        <?= $this->Html->link(__('Novo Evento'), ['action' => 'add'], ['class' => 'btn btn-outline-success my-2 my-sm-0']) ?>    
-    <?php endif; ?>
-    <h3><?= __('Eventos Programados') ?></h3>
-    <div class="table">
-        <table class="table table-striped">
+<div class="singlesubscriptions index content">
+    <?= $this->Html->link(__('Lançar Pré Inscrição'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <h3><?= __('Pré-Inscrições') ?></h3>
+    <div class="table-responsive">
+        <table class="table">
             <thead>
-                <tr>                    
-                    <th><?= $this->Paginator->sort('description','Evento') ?></th>                    
-                    <th><?= $this->Paginator->sort('startdate','Início') ?></th>
-                    <th><?= $this->Paginator->sort('enddate','Encerramento') ?></th>
-                    <th><?= $this->Paginator->sort('price','Valor') ?></th>
-                    <th><?= $this->Paginator->sort('subscriptionrequired','Inscrição') ?></th>                    
+                <tr>
+                    <th><?= $this->Paginator->sort('id','PreInsc#') ?></th>
+                    <th><?= $this->Paginator->sort('rolevent_id','Evento') ?></th>                   
+                    <th><?= $this->Paginator->sort('fullname','Nome') ?></th>                    
+                    <th><?= $this->Paginator->sort('bussinessunit_id','Congregação') ?></th>
+                    <th><?= $this->Paginator->sort('organizationname','Denominação') ?></th>                                                     
+                    <th><?= $this->Paginator->sort('statusflag','Status') ?></th>
+                    <th><?= $this->Paginator->sort('subscription_id','Conversão') ?></th>                    
+                    <th><?= $this->Paginator->sort('modified','Atualizado') ?></th>
+                    <th><?= $this->Paginator->sort('people_id','CodMe') ?></th>                    
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($rolevents as $rolevent): ?>
-                <tr>                    
-                    <td><?= h($rolevent->description) ?></td>                    
-                    <td><?= h($rolevent->startdate) ?></td>
-                    <td><?= h($rolevent->enddate) ?></td>
-                    <td><?= number_format(h($rolevent->price), 2, ',','.') ?></td>
-                    <td><?= h($rolevent->subscriptionrequired) ? __('Sim') : __('Não'); ?></td>                    
+                <?php foreach ($singlesubscriptions as $singlesubscription): ?>
+                <tr>
+                    <td><?= $this->Number->format($singlesubscription->id) ?></td>
+                    <td><?= $singlesubscription->has('rolevent') ? $this->Html->link($singlesubscription->rolevent->description, ['controller' => 'Rolevents', 'action' => 'view', $singlesubscription->rolevent->id]) : '' ?></td>                   
+                    <td><?= h($singlesubscription->fullname) ?></td>                    
+                    <td><?= $singlesubscription->has('bussinessunit') ? $this->Html->link($singlesubscription->bussinessunit->description, ['controller' => 'Bussinessunits', 'action' => 'view', $singlesubscription->bussinessunit->id]) : '' ?></td>
+                    <td><?= h($singlesubscription->organizationname) ?></td>                                                            
+                    <td><?= h($singlesubscription->statusflag) ?></td>                    
+                    <td><?= $singlesubscription->has('subscription') ? $this->Html->link($singlesubscription->subscription->id, ['controller' => 'Subscriptions', 'action' => 'view', $singlesubscription->subscription->id]) : '' ?></td>                    
+                    <td><?= h($singlesubscription->modified) ?></td>
+                    <td><?= $this->Number->format($singlesubscription->people_id) ?></td>                    
                     <td class="actions">
-                        <?= $this->Html->link(__('Ver'), ['action' => 'view', $rolevent->id]) ?>
-                        <?php if ($roleid == 1 ) : ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $rolevent->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $rolevent->id], ['confirm' => __('Are you sure you want to delete # {0}?', $rolevent->id)]) ?>
-                        <?php endif; ?>     
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $singlesubscription->id]) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $singlesubscription->id]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $singlesubscription->id], ['confirm' => __('Are you sure you want to delete # {0}?', $singlesubscription->id)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
