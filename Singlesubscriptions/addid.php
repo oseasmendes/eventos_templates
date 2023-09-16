@@ -26,7 +26,7 @@
                     echo $this->Form->control('bussinessunit_id', ['options' => $bussinessunits, 'empty' => true,'label'=>'Congregação ADBELEM SJC','class'=>['class'=> 'form-control']]);
                     echo $this->Form->control('organizationname',['label'=>'(Se não faz parte da ADBELEM SJC) Qual é igreja procedente?','class'=> "form-control"]);
                     echo $this->Form->control('position',['label'=>'Cargo:','class'=> "form-control"]);
-                    echo $this->Form->control('mobil',['label'=>'Celular','class'=> "form-control"]);
+                    echo $this->Form->control('subscription.mobile',['label'=>'Celular','class'=> "form-control"]);
                     echo $this->Form->control('salesperson',['label'=>'Pastor Dirigente','class'=> "form-control"]);
                     echo $this->Form->control('address',['label'=>'Endereço','class'=> "form-control"]);
                     echo $this->Form->control('district',['label'=>'Bairro','class'=> "form-control"]);

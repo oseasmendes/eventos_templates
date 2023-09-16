@@ -22,6 +22,8 @@ $roleid = $this->Identity->get('role_id');
     </aside>
     <div class="column-responsive column-80">
         <div class="subscriptionsdocs view content">
+
+
             <h3><?= "COMPROVANTE NrO. #".h($subscriptionsdoc->id) ?></h3>            
             
         
@@ -69,6 +71,17 @@ $roleid = $this->Identity->get('role_id');
                     </div>
                 </div>
             </div>
+            <div class="row">
+                            <?php  
+                              
+                                if ($roleid == 1) {      
+                                    echo '<div class="col-3"> ';
+                                    echo  $this->Html->link(__('Confirmar Inscrição'), ['controller' => 'subscriptions','action' => 'confirmation', $subscriptionsdoc->subscription_id],['class'=>'dropdown-item']) ;                                    
+                                    echo '</div>';
+                                } 
+                                
+                            ?>
+                        </div>
 
     
         </div>

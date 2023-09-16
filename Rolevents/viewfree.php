@@ -31,10 +31,21 @@
                             <td><?= h($rolevent->enddate) ?></td>
                         </tr>                      
                     </table>
-                                        <?= $this->Form->create($rolevent, ['url'=>['controller' => 'Singlesubscriptions', 'action' => 'addid',$rolevent->id],'']) ?>   
-                                            <?= $this->Form->control('PreInscricao',['default'=> $this->Number->format($rolevent->id,['places' => 0]),'type' => 'hidden']); ?>                                  
-                                            <?= $this->Form->button('PRE-INSCRICAO',['class'=>'btn btn-success']) ?>
-                                        <?= $this->Form->end() ?> 
+                   
+                            <div class="row">
+                                <div class="span4">
+                                            <?= $this->Form->create($rolevent, ['url'=>['controller' => 'Singlesubscriptions', 'action' => 'addid',$rolevent->id],'']) ?>   
+                                                <?= $this->Form->control('PreInscricao',['default'=> $this->Number->format($rolevent->id,['places' => 0]),'type' => 'hidden']); ?>                                  
+                                                <?= $this->Form->button('REGISTRAR PRE-INSCRICAO',['class'=>'btn btn-success']) ?>
+                                            <?= $this->Form->end() ?>                         
+                                </div> 
+                                <div class="span8">
+                                        <div class="col-3"> 
+                                        <?=  $this->Html->link(__('CONSULTAR PRE-INSCRICAO'), ['controller' => 'singlesubscriptions','action' => 'checksubscription'],['class'=>'btn btn-secondary']) ?>                                    
+                                </div>
+                            </div>
+                       
+                            
                                    
             </div>        
             <div class="text">

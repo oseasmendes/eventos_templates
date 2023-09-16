@@ -9,23 +9,27 @@
     <div class="column-responsive column-80">
         <div class="singlesubscriptions view content">
             <div class="text">
-                <strong><?= __('Prezado(a) Irmã(o)') ?></strong>
+                <strong><?= __('Parabéns') ?></strong>
+                <h3><?= strtoupper(h($singlesubscription->fullname))  ?></h3>
                 <blockquote>                    
                     <?php $boasvindas = "Seja muito benvindo(a) ao nosso evento!  Pré-Inscrição Registrada com sucesso. 
-                    Lembrando que apenas o pagamento desta resultará na efetivação de sua participação no evento. O pagamento deverá ser feito na secretaria do evento ou diretamente o dirigente de sua igreja.
-                    Para melhor organização e alinhamento guarde o número de sua Pré Inscrição gerada logo abaixo.";?>
+                    Lembrando que apenas o pagamento desta resultará na efetivação de sua participação no evento. 
+                    Caso pertença ao nosso ministério, o pagamento deverá ser feito na secretaria do evento ou com o dirigente de sua congregação.
+                    Para melhor organização e alinhamento guarde o número de referência gerada logo abaixo.";?>
                     <?=                         
                         $this->Text->autoParagraph($boasvindas); 
                     ?>
                 </blockquote>
-            </div>
-            <h3><?= "#Número da Pré Inscrição: ".h($singlesubscription->id)."-". h($singlesubscription->fullname)  ?></h3>
+            </div>                       
+
             <table class="table">  
                 <tr>
+                    <th><?= __(' Número da Referência') ?></th>
+                    <td colspan="4"><h2><?= h($singlesubscription->reference) ?></h2></td>
+                </tr>
+                <tr>    
                     <th><?= __('Evento') ?></th>
-                    <td><?= $singlesubscription->has('rolevent') ? $this->Html->link($singlesubscription->rolevent->description, ['controller' => 'Rolevents', 'action' => 'viewfree', $singlesubscription->rolevent->id]) : '' ?></td>
-                    <th><?= __(' Número da Pré Inscrição') ?></th>
-                    <td><?= $this->Number->format($singlesubscription->id) ?></td>
+                    <td colspan="4"><?= $singlesubscription->has('rolevent') ? $this->Html->link($singlesubscription->rolevent->description, ['controller' => 'Rolevents', 'action' => 'viewfree', $singlesubscription->rolevent->id]) : '' ?></td>                    
                 </tr>
                 <tr>
                     <th><?= __('Cargo') ?></th>
@@ -64,7 +68,7 @@
                 <tr>
                     <th><?= __('Cadastro Interno Relacionado') ?></th>
                     <td><?= $this->Number->format($singlesubscription->people_id) ?></td>
-                    <th><?= __('Concorda com termos de Lei Geral de Proteção de Dados -LGPD') ?></th>
+                    <th><?= __('Lei de Proteção de Dados?') ?></th>
                     <td><?= $singlesubscription->lgpd_ok ? __('Sim') : __('Não'); ?></td>
                 </tr>
                 <tr>
@@ -82,7 +86,7 @@
                 </tr>            
                
             </table>
-           
+            <h4>IMPORTANTE: Guarde ao número de referência da pré-inscrição para consultas futuras.</h3>
         </div>
     </div>
 </div>

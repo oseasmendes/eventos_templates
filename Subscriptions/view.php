@@ -23,11 +23,19 @@ $roleid = $this->Identity->get('role_id');
         <div class="row">
                             <?php  
                               
-                                if ($subscription->statusflag = 'ABERTA') {      
+                                if ((!empty($subscription->statusflag))) {      
                                     echo '<div class="col-3"> ';
                                     echo $this->Form->create($subscription, ['url'=>['controller' => 'subscriptionsdocs', 'action' => 'addid',$subscription->id],'']);    
                                     echo   $this->Form->control('Imagem',['default'=> $this->Number->format($subscription->id,['places' => 0]),'type' => 'hidden']);                                  
                                     echo $this->Form->button('Anexar Comprovante',['class'=>'btn-dark btn-sm btn-block']);
+                                    echo  $this->Form->end() ; 
+                                    echo '</div>';
+                                } else {
+
+                                    echo '<div class="col-3"> ';
+                                    echo $this->Form->create($subscription, ['url'=>['controller' => 'subscriptions', 'action' => 'convertsub',$subscription->id],'']);    
+                                    echo $this->Form->control('ConverterPre',['default'=> $this->Number->format($subscription->id,['places' => 0]),'type' => 'hidden']);                                  
+                                    echo $this->Form->button('Converter Pré Inscrição',['class'=>'btn-dark btn-sm btn-block']);
                                     echo  $this->Form->end() ; 
                                     echo '</div>';
                                 }
@@ -50,11 +58,19 @@ $roleid = $this->Identity->get('role_id');
                 <tr>
                     <th><?= __('Data Emissão') ?></th>
                     <td><?= h($subscription->dateissue) ?></td>
+                </tr> 
+                <tr>
+                    <th><?= __('Pré Inscrição') ?></th>
+                    <td><strong><?= h($subscription->singlesubscription_id) ?></strong></td>
                 </tr>              
             </table>
-            <blockquote>
-                    <?= 'OS ANEXOS DEVERÃO ESTAR EM ARQUIVOS DE IMAGEM - JPG, PNG'; ?>
+                <h4>Resumo</h4>                            
+                <blockquote class="blockquote-reverse">
+                    <p><?= h($subscription->summary) ?></p>                                
                 </blockquote>
+                <blockquote>
+                    <h2><?= 'OS ANEXOS DEVERÃO ESTAR EM ARQUIVOS DE IMAGEM - JPG, PNG'; ?></h2>
+                </blockquote>                
             <div class="related">
                 <h4><?= __('Comprovantes') ?></h4>
                 <?php if (!empty($subscription->subscriptionsdocs)) : ?>
@@ -80,7 +96,7 @@ $roleid = $this->Identity->get('role_id');
                             </td>
                         </tr>
                         <?php endforeach; ?>
-                    </table>
+                    </table>                           
                 </div>
                 <?php endif; ?>
             </div>
