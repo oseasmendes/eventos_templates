@@ -5,7 +5,7 @@
  */
 ?>
 <div class="subscriptions index content">
-    <?= $this->Html->link(__('Lançar Pré-Inscrição'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?= $this->Html->link(__('Lançar Inscrição'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Inscrições Online') ?></h3>
     <div class="table-responsive">
         <table>
@@ -15,6 +15,8 @@
                     <th><?= $this->Paginator->sort('created','Lancto') ?></th>
                     <th><?= $this->Paginator->sort('rolevent_id','Evento') ?></th>
                     <th><?= $this->Paginator->sort('user_id','Usuário') ?></th>
+                    <th><?= $this->Paginator->sort('singlesubscription_id','PreInsc') ?></th>
+                    <th><?= $this->Paginator->sort('singlesubscription_id','PreI') ?></th>                    
                     <th><?= $this->Paginator->sort('activeflag','Ativo') ?></th>
                     <th><?= $this->Paginator->sort('statusflag','Status') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -27,11 +29,13 @@
                     <td><?= h($subscription->created) ?></td>
                     <td><?= $subscription->has('rolevent') ? $this->Html->link($subscription->rolevent->description, ['controller' => 'Rolevents', 'action' => 'view', $subscription->rolevent->id]) : '' ?></td>
                     <td><?= $subscription->has('user') ? $this->Html->link($subscription->user->name, ['controller' => 'Users', 'action' => 'view', $subscription->user->id]) : '' ?></td>
+                    <td><?= h($subscription->singlesubscription_id) ?></td>                    
+                    <td><?= $subscription->has('singlesubscription') ? $this->Html->link($subscription->singlesubscription->id, ['controller' => 'Singlesubscriptions', 'action' => 'view', $subscription->singlesubscription->id]) : '' ?></td>
                     <td><?= h($subscription->activeflag) ?></td>
                     <td><?= h($subscription->statusflag) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $subscription->id]) ?>
-                        
+                        <?= $this->Html->link(__('PreInsc'), ['controller'=>'Singlesubscriptions','action' => 'view', $subscription->singlesubscription_id]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

@@ -22,23 +22,15 @@
                     </div>  
                 </div>
                 </div>
-                <div class="row">
-                                <div class="span4">                           
+                <div class="col-sm-8 col-md-7 py-4"> 
+                    <ul class="nav navbar-nav" role="navigation" >                           
                                             <?= $this->Form->create(null,['class'=>'form-inline my-2 my-lg-0','type'=>'get']) ?>                
-                                            <div class="input-group">                        
                                             <?= $this->Form->control('bussinessunit_id', ['options' => $bussinessunits,
                                                                             'empty' => 'Unidades',                                          
                                                                             'class'=>['class'=> 'form-control'],
                                                                             'label' => false                               
                                                                             ]); ?>         
-                                            </div>    
-                                            <div class="input-group">                        
-                                            <?= $this->Form->control('statusf', ['options' => ['GERADA_COM_SUCESSO'=>'GERADA_COM_SUCESSO','INSCRICAO_CONVERTIDA'=>'INSCRICAO_CONVERTIDA'],
-                                                                            'empty' => 'Status',                                          
-                                                                            'class'=>['class'=> 'form-control'],
-                                                                            'label' => false                               
-                                                                            ]); ?>         
-                                            </div>    
+                                                
                                             <div class="input-group">                        
                                                     <?= $this->Form->input('description', ['class'=>'form-control mr-sm-2',
                                                                                'style'=>'width:100%',
@@ -49,16 +41,15 @@
                                                                                'label' => false,
                                                                                "autocomplete" => "off",
                                                                                'default'=>$this->request->getQuery('description')]); ?>               
-                                             </div>                                       
                                              <div class="input-group">         
                                                     <div class="input-group-btn">
                                                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar
                                                         </button>
-                                             </div>            
+                                                    </div>            
                                     <?= $this->Form->end() ?>
                                 </div>
                         </div>
-                    
+                    </ul>
                 </div>              
             </div>
           </div>
@@ -73,36 +64,28 @@
 
 <div class="singlesubscriptions index content">
     <?= $this->Html->link(__('Lançar Pré Inscrição'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <?= $this->Html->link(__('Todas'), ['action' => 'index'], ['class' => 'button float-right']) ?>
     <h3><?= __('Pré-Inscrições') ?></h3>
     <div class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id','PreInsc#') ?></th>
-                    <th><?= $this->Paginator->sort('rolevent_id','Evento') ?></th>                   
-                    <th><?= $this->Paginator->sort('fullname','Nome') ?></th>                    
+                    <th><?= $this->Paginator->sort('bussinessunit_id','Unidade') ?></th>
                     <th><?= $this->Paginator->sort('bussinessunit_id','Congregação') ?></th>
-                    <th><?= $this->Paginator->sort('organizationname','Denominação') ?></th>                                                     
-                    <th><?= $this->Paginator->sort('statusflag','Status') ?></th>
-                    <th><?= $this->Paginator->sort('subscription_id','Conversão') ?></th>                    
-                    <th><?= $this->Paginator->sort('modified','Atualizado') ?></th>
-                    <th><?= $this->Paginator->sort('people_id','CodMe') ?></th>                    
+                    <th><?= $this->Paginator->sort('count','Quantidade') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($singlesubscriptions as $singlesubscription): ?>
+                <?php foreach ($singlesubscription as $singlesubscription): ?>
                 <tr>
-                    <td><?= $this->Number->format($singlesubscription->id) ?></td>
-                    <td><?= $singlesubscription->has('rolevent') ? $this->Html->link($singlesubscription->rolevent->description, ['controller' => 'Rolevents', 'action' => 'view', $singlesubscription->rolevent->id]) : '' ?></td>                   
-                    <td><?= h($singlesubscription->fullname) ?></td>                    
-                    <td><?= $singlesubscription->has('bussinessunit') ? $this->Html->link($singlesubscription->bussinessunit->description, ['controller' => 'Bussinessunits', 'action' => 'view', $singlesubscription->bussinessunit->id]) : '' ?></td>
-                    <td><?= h($singlesubscription->organizationname) ?></td>                                                            
-                    <td><?= h($singlesubscription->statusflag) ?></td> 
-                    <td><?= $singlesubscription->has('subscription') ? $this->Html->link($singlesubscription->subscription->id, ['controller' => 'Subscriptions', 'action' => 'view', $singlesubscription->subscription->id]) : '' ?></td>                    
-                    <td><?= h($singlesubscription->modified) ?></td>
-                    <td><?= $this->Number->format($singlesubscription->people_id) ?></td>                    
+                    <td><?= $this->Number->format($singlesubscription->bussinessunit_id) ?></td>
+                    <?php if(!empty($singlesubscription->bussinessunit_id)) : ?>
+                    <td><?= $this->cell('BussinessUnit::getname', [h($singlesubscription->bussinessunit_id)]) ?></td>
+                    <?php else: ?>
+                    <td>NÃO INFORMADO</td>
+                    <?php endif; ?> 
+
+                    <td><?= $this->Number->format($singlesubscription->count) ?></td>                    
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $singlesubscription->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $singlesubscription->id]) ?>
@@ -112,7 +95,6 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <?= $geradas ?>
     </div>
     <div class="paginator">
         <ul class="pagination">

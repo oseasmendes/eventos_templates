@@ -81,8 +81,10 @@
                 <tr>
                     <th><?= __('Status') ?></th>
                     <td><?= h($singlesubscription->statusflag) ?></td>
+                    <?php if (h($singlesubscription->statusflag) == 'INSCRICAO_CONVERTIDA' ) : ?>
                     <th><?= __('Inscrição Relacionada') ?></th>
-                    <td><?= $singlesubscription->has('subscription') ? $this->Html->link($singlesubscription->subscription->id, ['controller' => 'Subscriptions', 'action' => 'view', $singlesubscription->subscription->id]) : '' ?></td>
+                    <td><?= $singlesubscription->has('subscription') ? $this->Html->link($singlesubscription->subscription->id, ['controller' => 'Subscriptions', 'action' => 'viewfree', $singlesubscription->subscription_id]) : '' ?></td>
+                    <?php endif; ?>    
                 </tr>            
                
             </table>

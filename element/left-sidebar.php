@@ -488,6 +488,69 @@ $name = $this->Identity->get('name');
               </li>     -->                       
             </ul>
           </li> 
+
+          
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon far fa-calendar-alt"></i>              
+              <p>
+                Financeiro
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              
+            
+              <li class="nav-item">
+                <a href="<?= $this->Url->build('/listardespesas', ["fullBase" => true]) ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Gerenciar Despesas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= $this->Url->build('/listarentradas', ["fullBase" => true]) ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Gerenciar Entradas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= $this->Url->build('/livrocaixa', ["fullBase" => true]) ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Livro Caixa</p>
+                </a>
+              </li>
+             <!-- <li class="nav-item">
+                <a href="<?= $this->Url->build('/projetosprodutosentregasflws', ["fullBase" => true]) ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Entregas Follows</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= $this->Url->build('/programasnotas', ["fullBase" => true]) ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Notícias do Programa</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= $this->Url->build('/projetosnotas', ["fullBase" => true]) ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Notícias de Projetos</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/charts/inline.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Comunicados</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                  <a href="<?= $this->Url->build('/logbooks', ["fullBase" => true]) ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Diário de Bordo</p>
+                </a>
+              </li>     -->                       
+            </ul>
+          </li> 
                  
 
           <li class="nav-item">

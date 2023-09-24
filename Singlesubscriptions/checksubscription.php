@@ -48,7 +48,7 @@
                         <th><?= $this->Paginator->sort('bussinessunit_id','Congregação') ?></th>
                         <th><?= $this->Paginator->sort('organizationname','Denominação') ?></th>                                                     
                         <th><?= $this->Paginator->sort('statusflag','Status') ?></th>
-                        <th><?= $this->Paginator->sort('subscription_id','Conversão') ?></th>                    
+                        <th><?= $this->Paginator->sort('subscription_id','Inscrição') ?></th>
                         <th><?= $this->Paginator->sort('modified','Atualizado') ?></th>
                         <th><?= $this->Paginator->sort('people_id','CodMe') ?></th>                    
                         <th class="actions"><?= __('Actions') ?></th>
@@ -62,16 +62,17 @@
                         <td><?= h($singlesubscription->fullname) ?></td>                    
                         <td><?= $singlesubscription->has('bussinessunit') ? $this->Html->link($singlesubscription->bussinessunit->description, ['controller' => 'Bussinessunits', 'action' => 'view', $singlesubscription->bussinessunit->id]) : '' ?></td>
                         <td><?= h($singlesubscription->organizationname) ?></td>                                                            
-                        <td><?= h($singlesubscription->statusflag) ?></td>                    
-                        <td><?= $singlesubscription->has('subscription') ? $this->Html->link($singlesubscription->subscription->id, ['controller' => 'Subscriptions', 'action' => 'view', $singlesubscription->subscription->id]) : '' ?></td>                    
+                        <td><?= h($singlesubscription->statusflag) ?></td>
+                        <?php if (h($singlesubscription->statusflag) == 'INSCRICAO_CONVERTIDA' ) : ?>
+                        <td><?= $singlesubscription->has('subscription') ? $this->Html->link($singlesubscription->subscription->id, ['controller' => 'Subscriptions', 'action' => 'viewfree', $singlesubscription->subscription->id]) : '' ?></td>                                            
+                        <?php  elseif (h($singlesubscription->statusflag) == 'GERADA_COM_SUCESSO' ) : ?>                        
+                        <td>INSCRIÇÃO EM ANDAMENTOO</td>                                            
+                        <?php  endif; ?>               
                         <td><?= h($singlesubscription->modified) ?></td>
                         <td><?= $this->Number->format($singlesubscription->people_id) ?></td>                    
                         <td class="actions">
-                            <?= $this->Html->link(__('View'), ['action' => 'view', $singlesubscription->id]) ?>
-                            <?php if ($singlesubscription->statusflag == 'GERADA_COM_SUCESSO' ) : ?>                         
-                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $singlesubscription->id], ['confirm' => __('Are you sure you want to delete # {0}?', $singlesubscription->id)]) ?>
-                            <?php endif; ?>       
-                        </td>
+                            <?= $this->Html->link(__('View'), ['action' => 'view', $singlesubscription->id]) ?>                                              
+                            </td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

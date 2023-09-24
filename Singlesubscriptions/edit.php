@@ -23,32 +23,28 @@
         <div class="singlesubscriptions form content">
             <?= $this->Form->create($singlesubscription) ?>
             <fieldset>
-                <legend><?= __('Edit Singlesubscription') ?></legend>
+                <legend><?= __('Editar Pré-Inscrição') ?></legend>
                 <?php
-                    echo $this->Form->control('rolevent_id', ['options' => $rolevents, 'empty' => true]);
-                    echo $this->Form->control('fullname');
-                    echo $this->Form->control('email');
-                    echo $this->Form->control('bussinessunit_id', ['options' => $bussinessunits, 'empty' => true]);
-                    echo $this->Form->control('organizationname');
-                    echo $this->Form->control('position');
-                    echo $this->Form->control('mobil');
-                    echo $this->Form->control('salesperson');
-                    echo $this->Form->control('address');
-                    echo $this->Form->control('district');
-                    echo $this->Form->control('city');
-                    echo $this->Form->control('reference');
-                    echo $this->Form->control('statusflag');
-                    echo $this->Form->control('documentnumber');
-                    echo $this->Form->control('subscription_id', ['options' => $subscriptions, 'empty' => true]);
-                    echo $this->Form->control('people_id');
-                    echo $this->Form->control('comments');
-                    echo $this->Form->control('lgpd_ok');
-                    echo $this->Form->control('copyrigth_ok');
-                    echo $this->Form->control('alteradopor');
-                    echo $this->Form->control('processadopor');
+                    $lgpd = " De acordo com as Leis 12.965/2014 e 13.709/2018, que regulam o uso da internet e o tratamento de dados pessoais no Brasil, 
+                    ao me inscrever autorizo a Igreja Evangélica Assembléia de Deus - Ministério do Belém em São José dos Campos a enviar notificações
+                    por email e outros meios e concordo com a sua Política de Privacidade.";
+                    echo $this->Form->control('rolevent_id', ['options' => $rolevents, 'empty' => true,'label'=>'Evento','class'=>['class'=> 'form-control']]);
+                    echo $this->Form->control('fullname',['label'=>'Nome Completo','class'=> "form-control"]);
+                    echo $this->Form->control('email', ['label'=>'Endereço de E-mail','class'=> "form-control"]);
+                    echo $this->Form->control('bussinessunit_id', ['options' => $bussinessunits, 'empty' => true,'label'=>'Congregação ADBELEM SJC','class'=>['class'=> 'form-control']]);
+                    echo $this->Form->control('organizationname',['label'=>'(Se não faz parte da ADBELEM SJC) Qual é igreja procedente?','class'=> "form-control"]);
+                    echo $this->Form->control('position',['label'=>'Cargo:','class'=> "form-control"]);
+                    echo $this->Form->control('subscription.mobile',['label'=>'Celular','class'=> "form-control"]);
+                    echo $this->Form->control('salesperson',['label'=>'Pastor Dirigente','class'=> "form-control"]);
+                    echo $this->Form->control('address',['label'=>'Endereço','class'=> "form-control"]);
+                    echo $this->Form->control('district',['label'=>'Bairro','class'=> "form-control"]);
+                    echo $this->Form->control('city',['label'=>'Cidade','class'=> "form-control"]);                    
+                    echo $this->Form->control('documentnumber',['label'=>'CPF','class'=> "form-control"]);         
+                    echo $this->Form->control('statusflag',['options' => ['GERADA_COM_SUCESSO'=>'GERADA_COM_SUCESSO'],'label'=>'Status','class'=> "form-control"]);         
+                    echo $this->Form->control('lgpd_ok',['label'=>$lgpd]);                    
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Submit'),['class'=>'btn btn-primary']) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>
